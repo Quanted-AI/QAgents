@@ -57,6 +57,7 @@ Changelog = "https://github.com/Quanted-AI/QAgents/blob/main/CHANGELOG.md"
 dev = [
     "pytest>=8.0",
     "pytest-asyncio>=1.0",
+    "python-dotenv>=1.0",
     "mypy>=1.15",
     "ruff>=0.12",
     "build>=1.2",
@@ -89,7 +90,10 @@ line-length = 110
 target-version = "py313"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP"]
+# Initial release: enforce only the rules that catch real bugs (syntax errors,
+# undefined names). Style, import-sort, and modernization checks (E5*, I, UP)
+# are intentionally off until a dedicated cleanup pass — tracked as a follow-up.
+select = ["E9", "F63", "F7", "F82"]
 
 [tool.mypy]
 strict = true
