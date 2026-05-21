@@ -40,7 +40,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "pydantic-ai>=1.71.0,<1.72",
+    "pydantic-ai>=1.71.0,<1.101",
     "pydantic>=2.7",
     "json-repair>=0.55,<1.0",
     "python-frontmatter>=1.1.0",
