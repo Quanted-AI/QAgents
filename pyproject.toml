@@ -1,0 +1,96 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quanted-agents"
+dynamic = ["version"]
+description = "Type-safe agent SDK wrapping pydantic-ai with Pydantic BaseModel I/O enforcement"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+    { name = "David Forino", email = "d.forino@quanted.com" },
+]
+maintainers = [
+    { name = "David Forino", email = "d.forino@quanted.com" },
+]
+keywords = [
+    "ai",
+    "agents",
+    "llm",
+    "pydantic",
+    "pydantic-ai",
+    "openai",
+    "anthropic",
+    "workflow",
+    "orchestration",
+    "type-safe",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic-ai>=1.71.0,<1.72",
+    "pydantic>=2.7",
+    "json-repair>=0.55,<1.0",
+    "python-frontmatter>=1.1.0",
+    "rapidfuzz>=3.0,<4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Quanted-AI/QAgents"
+Repository = "https://github.com/Quanted-AI/QAgents"
+Issues = "https://github.com/Quanted-AI/QAgents/issues"
+Changelog = "https://github.com/Quanted-AI/QAgents/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=1.0",
+    "mypy>=1.15",
+    "ruff>=0.12",
+    "build>=1.2",
+    "twine>=5.0",
+]
+
+[tool.hatch.version]
+path = "quanted_agents/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["quanted_agents"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/quanted_agents",
+    "/tests",
+    "/examples",
+    "/docs",
+    "/README.md",
+    "/LICENSE",
+    "/NOTICE",
+    "/CHANGELOG.md",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 110
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+strict = true
+python_version = "3.13"

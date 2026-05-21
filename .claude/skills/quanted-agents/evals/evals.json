@@ -1,0 +1,86 @@
+{
+  "skill_name": "quanted-agents",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I need to build an agent that takes a research topic, searches for information, then writes a report based on findings",
+      "expected_output": "A Pipeline with two QuantedAgent steps, full production config: dotenv, env vars, skills/feedback folders, trace logging, soft budgets, restructurer, compact data models, no tool creation",
+      "files": [],
+      "assertions": [
+        "Code imports from quanted_agents (not raw pydantic-ai or another framework)",
+        "Uses QuantedAgent class for agents, not raw pydantic_ai.Agent",
+        "Uses Pipeline to chain the researcher and writer steps sequentially",
+        "Model strings are read from environment variables or config, not hardcoded",
+        "Input and output types are Pydantic BaseModel subclasses",
+        "Main function is async and wrapped with asyncio.run()",
+        "Output type of researcher matches input type of writer (Pipeline type rule)",
+        "Each agent has skills_path configured from an environment variable",
+        "Each agent has feedback_path configured from an environment variable",
+        "Skill markdown files are created under agent_instructions/skills/<agent>/",
+        "Feedback folders exist with .gitkeep under agent_instructions/feedback/<agent>/",
+        "System prompts are minimal (core role only, not detailed instructions)",
+        "No tool functions are written — only TODO comments if tools would be beneficial",
+        "load_dotenv() is called before any os.environ.get() usage",
+        "Every agent has restructurer_model configured",
+        "Every agent has llm_call_limit and tool_call_limit with soft_limit=True",
+        "Every run() call passes traces_path",
+        "Inter-agent data models are compact (no massive dict/Any fields)"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Create a support ticket system where tickets get classified and routed to the right specialist agent",
+      "expected_output": "A Router with dispatcher and specialists, full production config: dotenv, env vars, skills/feedback folders, trace logging, soft budgets, restructurer, compact data models, no tool creation",
+      "files": [],
+      "assertions": [
+        "Code imports from quanted_agents (not raw pydantic-ai or another framework)",
+        "Uses QuantedAgent class for agents, not raw pydantic_ai.Agent",
+        "Uses Router with a dispatcher and specialists dict",
+        "Dispatcher agent output_type is RoutingDecision",
+        "Model strings are read from environment variables or config, not hardcoded",
+        "Input and output types are Pydantic BaseModel subclasses",
+        "Main function is async and wrapped with asyncio.run()",
+        "At least 2 specialist agents are defined",
+        "Each agent has skills_path configured from an environment variable",
+        "Each agent has feedback_path configured from an environment variable",
+        "Skill markdown files are created under agent_instructions/skills/<agent>/",
+        "Feedback folders exist with .gitkeep under agent_instructions/feedback/<agent>/",
+        "System prompts are minimal (core role only, not detailed instructions)",
+        "No tool functions are written — only TODO comments if tools would be beneficial",
+        "load_dotenv() is called before any os.environ.get() usage",
+        "Every agent has restructurer_model configured",
+        "Every agent has llm_call_limit and tool_call_limit with soft_limit=True",
+        "Every run() call passes traces_path",
+        "Inter-agent data models are compact (no massive dict/Any fields)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Build me a parent agent that orchestrates 3 child agents: a researcher, a writer, and a reviewer. The writer should use the researcher's findings.",
+      "expected_output": "Hierarchical agents with RunnableTool, ArtifactStore, WorkflowBudget(50/30), soft_limit=True, full production config: dotenv, env vars, skills/feedback folders, trace logging, compact data models, no tool creation",
+      "files": [],
+      "assertions": [
+        "Code imports from quanted_agents (not raw pydantic-ai or another framework)",
+        "Uses QuantedAgent class for agents, not raw pydantic_ai.Agent",
+        "Uses RunnableTool to wrap child agents as tools for the parent",
+        "Uses ArtifactStore for sharing data between child agents",
+        "Writer's input_transform reads researcher's findings from the store",
+        "Model strings are read from environment variables or config, not hardcoded",
+        "Uses WorkflowBudget to limit resource usage across the hierarchy",
+        "Main function is async and wrapped with asyncio.run()",
+        "All 3 child agents (researcher, writer, reviewer) are defined",
+        "Each agent has skills_path configured from an environment variable",
+        "Each agent has feedback_path configured from an environment variable",
+        "Skill markdown files are created under agent_instructions/skills/<agent>/",
+        "Feedback folders exist with .gitkeep under agent_instructions/feedback/<agent>/",
+        "System prompts are minimal (core role only, not detailed instructions)",
+        "No tool functions are written — only TODO comments if tools would be beneficial",
+        "load_dotenv() is called before any os.environ.get() usage",
+        "Every agent has restructurer_model configured",
+        "Every agent has llm_call_limit and tool_call_limit with soft_limit=True",
+        "Every run() call passes traces_path",
+        "Inter-agent data models are compact (no massive dict/Any fields)"
+      ]
+    }
+  ]
+}

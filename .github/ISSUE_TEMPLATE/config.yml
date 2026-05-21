@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or discussion
+    url: https://github.com/Quanted-AI/QAgents/discussions
+    about: For usage questions, design discussions, or general feedback, please use GitHub Discussions instead of opening an issue.
+  - name: Security vulnerability
+    url: https://github.com/Quanted-AI/QAgents/blob/main/SECURITY.md
+    about: Please report security vulnerabilities privately as described in SECURITY.md — do not open a public issue.
