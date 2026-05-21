@@ -494,6 +494,10 @@ class TestRunnableToolDispatch(unittest.IsolatedAsyncioTestCase):
 # Integration Tests (real LLM)
 # ===========================================================================
 
+@unittest.skipUnless(
+    os.getenv("ANTHROPIC_API_KEY"),
+    "ANTHROPIC_API_KEY not set; skipping real-LLM integration tests.",
+)
 class TestHierarchicalIntegration(unittest.IsolatedAsyncioTestCase):
     """Integration tests with real LLM calls using anthropic:claude-haiku-4-5."""
 
